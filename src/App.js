@@ -20,20 +20,14 @@ function App() {
         techs: ["Node", "Express", "React"]
     });
 
-    const repository = response.data;
-
-    setRespositories([...repositories, repository]);
+    setRespositories([...repositories, response.data]);
   }
 
   async function handleRemoveRepository(id) {
     // TODO
       await api.delete(`repositories/${id}`);
-        
-      const repositoryIndex = repositories.findIndex(repository => repository.id === id);
 
-      repositories.splice(repositoryIndex, 1);
-
-      setRespositories([...repositories]);
+      setRespositories(repositories.filter(repository => repository.id !== id));
   }
 
   return (
